@@ -6,7 +6,7 @@ FROM adoptopenjdk/openjdk11:alpine-jre
 # If for some reason you wish to use the full JDK, the following line can be used
 # FROM adoptopenjdk/openjdk11:alpine
 
-ARG PROJECT_VERSION
+ARG PROJECT_VERSION=1.0.38-SNAPSHOT
 RUN echo "Project version set to -> ${PROJECT_VERSION}"
 
 ENV APPLICATION_USER ktor
@@ -18,7 +18,7 @@ RUN chown -R $APPLICATION_USER /app
 USER $APPLICATION_USER
 
 # These lines copy the packaged application into the Docker image and sets the working directory to where it was copied.
-COPY ./build/libs/validator-wrapper-jvm-${PROJECT_VERSION}.jar /app/validator-wrapper.jar
+COPY build/libs/validator-wrapper-jvm-${PROJECT_VERSION}.jar /app/validator-wrapper.jar
 WORKDIR /app
 
 # Environment vars here
